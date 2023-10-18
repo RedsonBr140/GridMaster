@@ -1,18 +1,34 @@
+import './style.css'
+
 const canvas = document.getElementById('game-canvas')
+
+canvas.width = 400
+canvas.height = 300
+
 const ctx = canvas.getContext('2d')
 
 const playerActions = []
 
-document.addEventListener('keydown', (event) => {
-  const moveFunction = player.acceptedMoves[event.key]
-  if (moveFunction) {
-    console.log(`Handling the ${event.key} key`)
-    event.preventDefault()
-    moveFunction(player, event.key)
-  } else {
-    console.log(`Unhandled key: ${event.key}`)
-  }
-})
+function startGame()  {
+    let menu = document.getElementById("menu")
+    menu.classList.add("hidden")
+
+    canvas.classList.remove("hidden");
+
+    // Only add the event listener once the game has really started.
+    document.addEventListener('keydown', (event) => {
+        const moveFunction = player.acceptedMoves[event.key]
+        if (moveFunction) {
+          console.log(`Handling the ${event.key} key`)
+          event.preventDefault()
+          moveFunction(player, event.key)
+        } else {
+          console.log(`Unhandled key: ${event.key}`)
+        }
+      })
+}
+
+
 
 const tileW = 100
 
@@ -20,7 +36,7 @@ const gridRows = 4
 const gridCols = 3
 
 let msBOB = new Image()
-msBOB.src = './assets/msbob.png'
+msBOB.src = '/images/msbob.png'
 const msBOB_x = 25
 const msBOB_y = 25
 

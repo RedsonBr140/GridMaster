@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GridMaster - Menu</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="menu-container" id="menu">
+        <span class="instructions">&#63;</span>
+        <img src="/images/logo.png" />
+        <div class="menu-option">
+          <button class="menu-button" onclick="startGame()">Começar Jogo</button>
+        </div>
+        <div class="menu-option">
+          <button class="menu-button" onclick="openSettings()">Configurações</button>
+        </div>
+      </div>
+
+      <div id="game" class="hidden">
+        <canvas id="game-canvas"></canvas>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

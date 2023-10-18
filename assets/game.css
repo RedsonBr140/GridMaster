@@ -9,10 +9,14 @@
 }
 
 canvas {
-  border: 5px solid #ccc;
-
+  border: 7px solid #ccc;
+  border-radius: 5%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+body {
+  background-color: #f8e3e3;
 }
