@@ -28,8 +28,48 @@ let keysPressedCount = 0;
 
 const updateTimeElapsed = () => {
     elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-    let duration = Duration.fromObject({seconds: elapsedTime});
+    let duration = Duration.fromObject({ seconds: elapsedTime });
     timeElapsedElement.textContent = duration.toFormat("hh:mm:ss");
+};
+
+const keyToIcon = {
+    ArrowDown: "fa-arrow-down",
+    ArrowUp: "fa-arrow-up",
+    ArrowRight: "fa-arrow-right",
+    ArrowLeft: "fa-arrow-left",
+    x: "fa-times",
+};
+
+const updateKeyViewer = () => {
+    const keyViewerContainer = document.getElementById("pressed-keys-list");
+
+    // Clear the current list of pressed keys
+    keyViewerContainer.innerHTML = "";
+
+    const result = [];
+    let currentItem = player.keypresses[0];
+    let currentCount = 1;
+
+    for (let i = 1; i < player.keypresses.length; i++) {
+        if (player.keypresses[i] === currentItem) {
+            currentCount++;
+        } else {
+            result.push({ key: currentItem, count: currentCount });
+            currentItem = player.keypresses[i];
+            currentCount = 1;
+        }
+    }
+
+    result.push({ key: currentItem, count: currentCount });
+
+    result.forEach((keysc) => {
+        const iconClass = keyToIcon[keysc.key] || "fa-question"; // Default icon in case of an unknown key
+        const keyElement = document.createElement("i");
+        keyElement.classList.add("fas", iconClass); // Assuming you're using the "fas" class for FontAwesome icons
+        keyViewerContainer.appendChild(document.createTextNode(`${keysc.count} `));
+        keyViewerContainer.appendChild(keyElement);
+        keyViewerContainer.appendChild(document.createTextNode(" "));
+    });
 };
 
 export const updateKeysPressed = () => {
@@ -87,9 +127,32 @@ export function startGame() {
             console.log(`Handling the ${event.key} key`);
             event.preventDefault();
             player[key]();
+            updateKeyViewer();
         } else {
             console.log(`Unhandled key: ${event.key}`);
         }
+    });
+
+    let mobileMoveUp = document.getElementById("mobile-move-up");
+    let mobileMoveDown = document.getElementById("mobile-move-down");
+    let mobileMoveLeft = document.getElementById("mobile-move-left");
+    let mobileMoveRight = document.getElementById("mobile-move-right");
+    let mobilePaint = document.getElementById("mobile-paint-control");
+
+    mobileMoveUp.addEventListener("click", () => {
+        player.ArrowUp();
+    });
+    mobileMoveDown.addEventListener("click", () => {
+        player.ArrowDown();
+    });
+    mobileMoveLeft.addEventListener("click", () => {
+        player.ArrowLeft();
+    });
+    mobileMoveRight.addEventListener("click", () => {
+        player.ArrowRight();
+    });
+    mobilePaint.addEventListener("click", () => {
+        player.x();
     });
     startTime = Date.now();
     setInterval(updateTimeElapsed, 1000); // Update time every second
@@ -109,5 +172,10 @@ export const resetGame = () => {
         startTime = Date.now();
         keysPressedCount = 0;
         keysPressedElement.textContent = keysPressedCount;
+
+        const keyViewerContainer = document.getElementById("pressed-keys-list");
+
+        // Clear the current list of pressed keys
+        keyViewerContainer.innerHTML = "";
     }
 };

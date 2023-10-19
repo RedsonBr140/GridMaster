@@ -134,7 +134,7 @@ body {
     }
 
     .info-stats {
-      font-family: 'Courier New', Courier, monospace;
+      font-family: "Courier New", Courier, monospace;
       color: #b2d8d8;
     }
   }
@@ -145,45 +145,39 @@ body {
     border-radius: 5px;
   }
 }
+// Detecting if its mobile via UserAgent
+.button-container {
+  display: none;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
 
-@media only screen and (min-width:768.1px) {
-  .button-container {
-    display: none;
-  }
-}
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(3, 40px);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 
-  .button-container {
-    display: flex;
-    position: absolute;
-    bottom: 70vh;
-    left: 5em;
-  
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(3, 40px);
-      grid-template-rows: repeat(3, 40px);
-      grid-column-gap: 0px;
-      grid-row-gap: 0px;
-  
-      .mv-control {
-        border: 1px solid black;
-      }
-  
-      #mobile-move-up {
-        grid-area: 1 / 2 / 2 / 3;
-      }
-      #mobile-move-down {
-        grid-area: 3 / 2 / 4 / 3;
-      }
-      #mobile-move-left {
-        grid-area: 2 / 1 / 3 / 2;
-      }
-  
-      #mobile-move-right {
-        grid-area: 2 / 3 / 3 / 4;
-      }
-      #mobile-paint-control {
-        grid-area: 3 /3 /4 /4 ;
-      }
+    .mv-control {
+      border: 1px solid black;
+    }
+
+    #mobile-move-up {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+    #mobile-move-down {
+      grid-area: 3 / 2 / 4 / 3;
+    }
+    #mobile-move-left {
+      grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #mobile-move-right {
+      grid-area: 2 / 3 / 3 / 4;
+    }
+    #mobile-paint-control {
+      grid-area: 3 /3 /4 /4;
     }
   }
+}
