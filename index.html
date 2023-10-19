@@ -2,13 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GridMaster - Menu</title>
-    <link rel="stylesheet" href="assets/index.css" />
   </head>
   <body>
-    
+    <div id="app">
+      <div class="menu-container" id="menu">
+        <img src="/images/logo.png" />
+        <div class="menu-option">
+          <button class="menu-button" id="play-btn">Começar Jogo</button>
+        </div>
+        <div class="menu-option">
+          <button class="menu-button">Configurações</button>
+        </div>
+        <div class="menu-option">
+          <button class="menu-button" id="instructions-btn">Instruções</button>
+        </div>
+      </div>
 
-    
+      <!-- Instructions modal -->
+      <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Controles:</h2>
+          <ul>
+            <li>Setas direcionais (cima, baixo, esquerda, direita) para se movimentar pelo mapa.</li>
+            <li>
+              Tecla "X" para preencher a posição atual.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Game canvas -->
+      <div id="game" class="hidden">
+        <div id="game-info">
+          <div class="left">
+            <div class="icons">
+              <div class="icon" id="exit-button">
+                <i class="fas fa-sign-out-alt"></i> <!-- Font Awesome exit icon -->
+              </div>
+              <div class="icon" id="reset-btn">
+                <i class="fas fa-undo"></i> <!-- Font Awesome undo icon -->
+              </div>
+        
+      </div>
+    </div>
+    <div class="right">
+      <div class="info-stats">
+        <p>Teclas pressionadas: <span id="keys-pressed">0</span></p>
+        <p>Tempo: <span id="time-elapsed">00:00:00</span></p>
+      </div>
+    </div>
+  <canvas id="game-canvas"></canvas>
+  <div class="button-container">
+    <div class="controls">
+      <button id="mobile-move-up" class="mv-control"><i class="fa-solid fa-chevron-up"></i></button>
+      <button id="mobile-move-down" class="mv-control"><i class="fa-solid fa-chevron-down"></i></button>
+      <button id="mobile-move-left" class="mv-control"><i class="fa-solid fa-chevron-left"></i></button>
+      <button id="#mobile-paint-control" class="mv-control">&times;</button>
+      <button id="mobile-move-right" class="mv-control"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/game/game.js"></script>
   </body>
 </html>
